@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:15
+    container_name: event-form-pg
+    environment:
+      POSTGRES_USER: event-form-usr
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: event-form
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ef-network
+
+  adminer:
+    image: adminer
+    container_name: event-form-adminer
+    restart: always
+    ports:
+      - 8082:8080
+    networks:
+      - ef-network
+
+volumes:
+  postgres_data:
+
+networks:
+  ef-network:
+    driver: bridge
