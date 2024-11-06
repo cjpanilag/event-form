@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { query } from "@/lib/db";
 import { v4 as uuidv4 } from "uuid";
-
-interface DatabaseError extends Error {
-  code?: string;
-}
+import { DatabaseError } from "@/definitions";
 
 export async function POST(req: NextRequest) {
   try {
